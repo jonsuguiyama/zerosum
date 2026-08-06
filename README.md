@@ -1,5 +1,7 @@
 # zerosum
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A double-entry bookkeeping ledger engine, built incrementally while learning
 Java and Spring Boot.
 
@@ -11,3 +13,7 @@ the underlying skills come online.
 See [docs/superpowers/specs/2026-08-06-zerosum-design.md](docs/superpowers/specs/2026-08-06-zerosum-design.md)
 for the full design, and [docs/DEVLOG.md](docs/DEVLOG.md) for a running log
 of what was built and why.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

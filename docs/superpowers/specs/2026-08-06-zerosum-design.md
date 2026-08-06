@@ -2,22 +2,15 @@
 
 ## Purpose
 
-A financial ledger engine built as a portfolio project, and as a daily-commit
-habit while learning Java and Spring Boot. The core idea is double-entry
-bookkeeping: money is never edited in place, only moved between accounts as
-balanced transactions. This is a common "senior-level" differentiator versus
-basic CRUD projects, and it's small enough to start with plain Java, no
-framework required.
+zerosum is a double-entry bookkeeping ledger engine. Money is never edited in
+place, only moved between accounts as balanced transactions, where every
+transaction's debits must equal its credits.
 
-## Guiding constraint
+## Motivation
 
-The author is early in a Java fundamentals course (pre-Spring Boot, pre-Spring
-Data JPA) and wants a project that:
-
-1. Can be built meaningfully with today's Java knowledge.
-2. Grows into a full Spring Boot + PostgreSQL app as the course progresses,
-   without a rewrite.
-3. Supports a genuine daily commit (no padding commits) even on low-time days.
+Since I'm currently studying and learning Java, I needed a project that
+would challenge me incrementally. I'll be adding new features and making
+things better as my knowledge and experience increases.
 
 ## Phases
 
@@ -32,20 +25,20 @@ Data JPA) and wants a project that:
   A `Transaction` that doesn't balance is rejected at construction time.
 - Money is represented as `BigDecimal` (or integer minor units), never
   `float`/`double`.
-- Build tool: Maven (continuity with the Spring Boot course, which uses
-  Maven; adding `spring-boot-starter-*` dependencies later is additive, not a
-  migration).
+- Build tool: Maven, Spring Boot's standard build tool, so adding
+  `spring-boot-starter-*` dependencies in Phase 2 is additive, not a
+  migration.
 - Testing: JUnit 5. Tests are written first for each invariant (TDD), so the
   reasoning for a rule is visible before the code that enforces it.
 
-### Phase 2 (once Spring Data JPA is covered)
+### Phase 2 - covering Spring Data JPA
 
 - Wrap the Phase 1 domain classes with Spring Boot + PostgreSQL persistence
   and a REST API (create account, post transaction, get balance/history).
   The domain model doesn't change; a persistence and API layer is added on
   top of it.
 
-### Phase 3 (once Spring Security / transactions are covered)
+### Phase 3 - Spring Security / transactions
 
 - Idempotency keys on the "post transaction" endpoint (duplicate requests
   must not double-post).
@@ -55,16 +48,11 @@ Data JPA) and wants a project that:
 
 ## Daily workflow
 
-- Small feature branches per addition, PR into `main`, per the author's
-  standing git workflow preference. Commits still count toward the GitHub
-  contribution graph regardless of branch.
+- Small feature branches per addition, PR into `main`.
 - Every commit is real work: a class, a test, a bug fix, or a docs entry.
   Never a blank/padding commit.
-- Fallback for zero-time days: add one more test case or one `DEVLOG.md`
-  entry. Still genuine, just small.
 - `docs/DEVLOG.md`: one dated entry per work session, describing what was
-  added and *why*. Doubles as a learning journal and as interview material
-  later.
+  added and *why*. Works as a learning journal.
 
 ## Error handling (Phase 1 scope)
 
@@ -87,5 +75,4 @@ exceptions at construction time:
 
 - Any Spring/PostgreSQL code (Phase 2+).
 - Frontend (Next.js) work — deferred until the backend domain and API exist.
-- Multi-currency support, exchange rates, or accounting periods/closing —
-  not needed to demonstrate the double-entry concept.
+- Multi-currency support, exchange rates, or accounting periods/closing.
