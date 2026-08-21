@@ -4,3 +4,5 @@ target/
 *.iml
 .vscode/
 docs/superpowers/plans/
+
+graphify-out/
